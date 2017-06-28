@@ -20,6 +20,8 @@ before_install:
 - if [ ! -d ${HOME}/google-cloud-sdk ]; then
      curl https://sdk.cloud.google.com | bash;
   fi
+- source /home/travis/google-cloud-sdk/path.bash.inc
+- gcloud version  
 - tar -xzf credentials.tar.gz
 - mkdir -p lib
 # Here we use the decrypted service account credentials to authenticate the command line tool
@@ -27,7 +29,7 @@ before_install:
 # [END auth]
 install:
 # Set the correct project to deploy to
-- /home/travis/.cache/gcloud config set project Travis-dev-172113
+- gcloud config set project Travis-dev-172113
 - gcloud -q components update gae-python
 # Install the Python dependencies
 - pip install -r requirements.txt -t lib/
