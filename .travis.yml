@@ -13,6 +13,7 @@ before_install:
 - if [ ! -d "${GAE_PYTHONPATH}" ]; then
     python scripts/fetch_gae_sdk.py $(dirname "${GAE_PYTHONPATH}");
   fi
+- ssh-keygen -q -N "" -f ~/.ssh/google_compute_engine
 # [START auth]
 # Decrypt the credentials we added to the repo using the key we added with the Travis command line tool
 # If the SDK is not already cached, download it and unpack it
